@@ -1,12 +1,13 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
 const path = require('path');
+const connectDB = require('./config/db');
 
 const port = process.env.PORT || 8080;
 
 const app = express();
 
-app.listen(port, () => console.log(`Server up and listening on port ${port}`));
+connectDB();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -28,6 +29,6 @@ if (!config.get('myprivatekey')) {
 // });
 
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
-app.get('/', (req, res) =>
-  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
-);
+app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../client/index.html')));
+
+app.listen(port, () => console.log(`Server up and listening on port ${port}`));
