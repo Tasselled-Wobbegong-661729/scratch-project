@@ -2,41 +2,34 @@ const mongoose = require('mongoose');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 const Joi = require('joi');
+const bcrypt = require('bcrypt');
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
-const UserSchema = new Schema({
+const userSchema = mongoose.Schema({
   email: {
     type: String,
-    required: true,
-    minlength: 5,
-    maxlength: 255,
     unique: true,
+    required: true,
   },
   password: {
     type: String,
     required: true,
-    minlength: 3,
-    maxlength: 255,
   },
 });
 
-UserSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id }, config.get('myprivatekey')); //get the private key from the config file -> environment variable
-  return token;
-};
+// userSchema.pre('save', function (next) {
+//   if (!this.isModified('password')) {
+//     return next();
+//   }
+//   this.password = bcrypt.hashSync(this.password, 10);
+//   next();
+// });
 
-const User = mongoose.model('User', UserSchema);
+// userSchema.methods.comparePassword = function (plaintext, callback) {
+//   return callback(null, bcrypt.compareSync(plaintext, this.password));
+// };
 
-//function to validate user
-function validateUser(user) {
-  const schema = {
-    email: Joi.string().min(5).max(255).required().email(),
-    password: Joi.string().min(3).max(255).required(),
-  };
+const userModel = mongoose.model('user', userSchema);
 
-  return Joi.validate(user, schema);
-}
-
-exports.User = User;
-exports.validate = validateUser;
+module.exports = userModel;

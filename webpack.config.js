@@ -26,9 +26,10 @@ module.exports = {
     hot: true,
     proxy: {
       '/api': 'http://localhost:3000',
+      '/signup': 'http://localhost:3000',
     },
     compress: true,
-    port: 8080,
+    port: process.env.PORT,
     static: {
       // match the output path
       directory: path.resolve(__dirname, 'dist'),
