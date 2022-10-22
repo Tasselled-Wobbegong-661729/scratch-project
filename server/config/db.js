@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const mongoose = require('mongoose');
 
 const MONGO_URI = 'mongodb+srv://dennis:park@scratch.lkftk6o.mongodb.net/apps?retryWrites=true&w=majority';
@@ -9,7 +10,7 @@ const connectDB = async () => {
       useUnifiedTopology: true,
       dbName: 'apps',
     });
-    console.log(`MongoDB Connected: ${conn.connection.host}`)
+    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan);
   } catch (error) {
     console.log('mongodb', error);
     process.exit(1);
