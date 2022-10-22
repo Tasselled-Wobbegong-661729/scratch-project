@@ -1,7 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
-const port = process.env.PORT || 8080;
+const path = require('path');
 
+const port = process.env.PORT || 8080;
 
 const app = express();
 
@@ -17,6 +18,5 @@ app.use(express.urlencoded({ extended: true }));
 //   next();
 // });
 
-app.use('/dist', express.static(path.join(__dirname,'../dist')));
+app.use('/dist', express.static(path.join(__dirname, '../dist')));
 app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../client/index.html')));
-app.use('/')
