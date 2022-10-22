@@ -7,7 +7,7 @@ module.exports = {
   mode: 'development',
   entry: [
     // entry point of our app
-    'index.js',
+    './client/index.js',
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
