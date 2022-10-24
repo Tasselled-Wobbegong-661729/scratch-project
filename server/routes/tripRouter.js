@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const { ModuleFilenameHelpers } = require('webpack');
 const tripController = require('../controllers/tripController');
 
@@ -15,15 +16,18 @@ tripRouter.post('/', tripController.createTrip, (req, res) => {
 });
 
 tripRouter.get('/', tripController.getTrip, (req, res) => {
+  console.log('trip found', res.locals.find);
   return res.status(200).json(res.locals.trip);
 });
 
-// tripRouter.post('/', tripController.createTrip, (req, res) => {
-//   return res.status(201).json('student added');
-// });
+tripRouter.delete('/delete', tripController.deleteTrip, (req, res) => {
+  console.log('deleted', res.locals.deleted);
+  return res.status(202).json('trip deleted successfully');
+});
 
-// tripRouter.post('/', tripController.createTrip, (req, res) => {
-//   return res.status(201).json('student added');
+// tripRouter.patch('/', tripController.updateTrip, (req, res) => {
+//   console.log('updated', res.locals.updated);
+//   return res.status(204).json('trip updated');
 // });
 
 // tripRouter.get('/', userController.isLoggedIn, (req, res) => {
