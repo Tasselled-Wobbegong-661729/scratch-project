@@ -45,6 +45,10 @@ tripController.getTrip = async (req, res, next) => {
   }
 };
 
+tripController.isLoggedIn = async (req, res, next) => {
+  const { username } = req.user;
+};
+
 // update incomplete
 
 // tripController.updateTrip = async (req, res, next) => {
@@ -85,6 +89,6 @@ tripController.deleteTrip = async (req, res, next) => {
   }
 };
 
-// for single property delete/add/update - call findoneand- on the property and 
+// for single property delete/add/update - call findoneand- on the property and
 
 module.exports = tripController;
