@@ -4,11 +4,10 @@ const colors = require('colors');
 const path = require('path');
 
 const cookieParser = require('cookie-parser');
-const config = require('config');
-const userController = require('./userController');
+const userController = require('./controllers/userController');
 
 const connectDB = require('./config/db');
-const User = require('./UserModel');
+const User = require('./models/UserModel');
 
 const port = process.env.PORT;
 

@@ -1,10 +1,4 @@
 const mongoose = require('mongoose');
-const config = require('config');
-const jwt = require('jsonwebtoken');
-const Joi = require('joi');
-const bcrypt = require('bcrypt');
-
-const { Schema } = mongoose;
 
 const userSchema = mongoose.Schema({
   email: {
