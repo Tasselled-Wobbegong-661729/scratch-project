@@ -2,13 +2,12 @@ const express = require('express');
 const dotenv = require('dotenv').config();
 const colors = require('colors');
 const path = require('path');
-
 const cookieParser = require('cookie-parser');
-const userController = require('./controllers/userController');
 
-const connectDB = require('./config/db');
-const User = require('./models/UserModel');
 const tripRouter = require('./routes/tripRouter');
+
+const userRouter = require('./routes/userRouter');
+const connectDB = require('./config/db');
 const port = process.env.PORT;
 
 const app = express();
@@ -19,13 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.post('/signup', userController.signUp, (req, res) => {
-  res.status(200).send(res.locals.newUser);
-});
-
-app.post('/login', userController.login, (req, res) => {
-  res.status(200).send(res.locals.loginToken);
-});
+app.use('/api/trips', tripRouter);
+console.log('we are in server.js before userRouter');
+app.use('/api/users', userRouter);
 
 // This will check if user's cookie is saved in browser and user is not set, then log the user out.
 // Happens when you stop your express server after login, your cookie remains saved in the browser.
@@ -39,15 +34,9 @@ app.post('/login', userController.login, (req, res) => {
 // });
 
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
-app.get('/', (req, res) =>
-  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
-);
-
-app.use('/api/trips', tripRouter);
-// app.use('/api/users', userRouter);
-
-app.use('/api/trips', tripRouter);
-// app.use('/api/users', userRouter);
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+});
 
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Server up and listening on port ${port}`));

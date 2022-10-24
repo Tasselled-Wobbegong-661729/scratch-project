@@ -26,7 +26,6 @@ module.exports = {
     hot: true,
     proxy: {
       '/api': 'http://localhost:3000',
-      '/signup': 'http://localhost:3000',
     },
     compress: true,
     port: process.env.PORT,

@@ -32,16 +32,14 @@ userController.login = async (req, res, next) => {
     if (user) {
       // check if password matches
       const result = await bcrypt.compare(req.body.password, user.password);
-      if (result) {
+      if (result === true) {
         // sign token and send it in response
         const token = await jwt.sign({ email: user.email });
         res.locals.loginToken = { token };
-        next();
-      } else if (!result) {
-        res.status(400).json({ error: "password doesn't match" });
+        return next();
       }
-    } else if (!user) {
-      res.status(400).json({ error: "email doesn't exist" });
+    } else {
+      return res.status(400).json({ error: "password doesn't match" });
     }
   } catch (err) {
     return next({

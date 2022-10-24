@@ -80,6 +80,6 @@ tripController.deleteTrip = async (req, res, next) => {
   }
 };
 
-// for single property delete/add/update - call findoneand- on the property and 
+// for single property delete/add/update - call findoneand- on the property and
 
 module.exports = tripController;
