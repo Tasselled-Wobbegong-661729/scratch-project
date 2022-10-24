@@ -3,6 +3,7 @@ import ReactDom from "react-dom";
 import {useState} from 'react';
 import Signup from "./Signup";
 import Login from "./Login";
+import TripContainer from './containers/TripContainer'
 
 function App (){
   const [signupButton, setSignupButton] = useState(false)
@@ -18,7 +19,11 @@ function App (){
         <Signup trigger={signupButton} setTrigger={setSignupButton}> 
         </Signup> 
       </main>
+      <div> 
+        <TripContainer></TripContainer>
     </div>
+    </div>
+
     )
 }
 export default App;

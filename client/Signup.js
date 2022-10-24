@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import Button from './components/Button'
+
 
 function Signup(props) {
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -10,26 +11,33 @@ function Signup(props) {
   }
   function handleSubmit(event) {
     event.preventDefault();
+    // const loginForm = document.getElementById('loginform')
+    // const formData = new FormData(loginForm);
+    const formData = {email: email, password: password};
+    console.log("sign Up data", formData)
   }
 
   return (props.trigger) ? (
     <div className="signup">
       <div className="signup-inner">
+      <br />
         <form>
+        
+
           <div className="form-group text-left">
             <label />
-            <input placeholder="Enter email" />
+            <input name = 'email' placeholder="Enter email" value={email} onChange={e => {setEmail(e.target.value)}}/>
           </div>
           <br />
           <div className="form-group text-left">
             <label />
-            <input placeholder="Password" />
+            <input name='password' placeholder="Password" value={password} onChange={e => {setPassword(e.target.value)}}/>
           </div>
           <br />
 
-          <button type="submit" className="signupinner-btn">
+          <Button className="signupinner-btn" text='Sign Up!' onClick={handleSubmit}>
             Sign Up!
-          </button>
+          </Button>
 
         </form>
         <button className='close-signup' onClick={() => props.setTrigger(false)}>close</button>
