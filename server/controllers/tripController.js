@@ -31,6 +31,7 @@ tripController.getTrip = async (req, res, next) => {
     console.log(req.params);
 
     const found = await Trip.find({});
+    console.log(found);
     res.locals.trip = found;
     return next();
   } catch (error) {
@@ -43,7 +44,7 @@ tripController.getTrip = async (req, res, next) => {
   }
 };
 
-// update and delete not complete
+// update incomplete
 
 // tripController.updateTrip = async (req, res, next) => {
 //   try {
@@ -63,26 +64,22 @@ tripController.getTrip = async (req, res, next) => {
 //   }
 // };
 
-// tripController.deleteTrip = async (req, res, next) => {
-//   if (!req.body) {
-//     console.log('nobody');
-//   }
-//   const { name, destination, date } = req.body;
-//   try {
-//     await Trip.create({
-//       name,
-//       destination,
-//       date,
-//     });
-//     return next();
-//   } catch (error) {
-//     return next({
-//       log: `tripController.createTrip: ERROR ${error}`,
-//       message: {
-//         err: 'Error adding new trip',
-//       },
-//     });
-//   }
-// };
+tripController.deleteTrip = async (req, res, next) => {
+  const { name } = req.params;
+  try {
+    const deleted = await Trip.findOneAndDelete({ name });
+    res.locals.deleted = deleted;
+    return next();
+  } catch (error) {
+    return next({
+      log: `tripController.deleteTrip: ERROR ${error}`,
+      message: {
+        err: 'Error deleting trip',
+      },
+    });
+  }
+};
+
+// for single property delete/add/update - call findoneand- on the property and 
 
 module.exports = tripController;

@@ -3,7 +3,7 @@ const dotenv = require('dotenv').config();
 const colors = require('colors');
 const path = require('path');
 const connectDB = require('./config/db');
-
+const tripRouter = require('./routes/tripRouter');
 const port = process.env.PORT;
 
 const app = express();
@@ -22,6 +22,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../client/index.html')));
+
+app.use('/api/trips', tripRouter);
+// app.use('/api/users', userRouter);
 
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Server up and listening on port ${port}`));
