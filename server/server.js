@@ -4,7 +4,8 @@ const colors = require('colors');
 const path = require('path');
 const connectDB = require('./config/db');
 const tripRouter = require('./routes/tripRouter');
-const port = process.env.PORT;
+
+const port = 3000;
 
 const app = express();
 
@@ -12,7 +13,7 @@ connectDB();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// // request headers for api access
+// // request headers for external api access
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", 'https://localhost:8080/'); // update to match the domain you will make the request from
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
