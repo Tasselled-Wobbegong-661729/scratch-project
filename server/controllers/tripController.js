@@ -10,11 +10,12 @@ tripController.createTrip = async (req, res, next) => {
   }
   const { name, destination, date } = req.body;
   try {
-    await Trip.create({
+    const added = await Trip.create({
       name,
       destination,
       date,
     });
+    res.locals.add = added;
     return next();
   } catch (error) {
     return next({
@@ -42,6 +43,10 @@ tripController.getTrip = async (req, res, next) => {
       },
     });
   }
+};
+
+tripController.isLoggedIn = async (req, res, next) => {
+  const { username } = req.user;
 };
 
 // update incomplete
@@ -80,6 +85,6 @@ tripController.deleteTrip = async (req, res, next) => {
   }
 };
 
-// for single property delete/add/update - call findoneand- on the property and 
+// for single property delete/add/update - call findoneand- on the property and
 
 module.exports = tripController;
