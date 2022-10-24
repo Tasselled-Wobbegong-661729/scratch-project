@@ -11,8 +11,9 @@ const TripForm = (props) => {
     const [destination, setDestination] = useState('');
     const [date, setDate] = useState('');
 
-    const handleSave = e => {
+    const handleSave = async e => {
         e.preventDefault();
+        try {
         //send post request to endpoint to create new trip with state passed into request 
         //reset state
         //render tripcontainer / un-render tripform
@@ -20,14 +21,15 @@ const TripForm = (props) => {
         // const formData = new FormData(form);
         const formData = {name: name, destination: destination, date: date};
         console.log('form data', formData);
-        axios.post('/api/trips', formData)
-        .then(response => {
-            if (response.status === 200) alert('Trip Created Successfully'); //--> i want this to disappear
-        })
-        .catch(error => {
-            console.log('error creating trip')
-        })
-         };
+        const response = await axios.post('/api/trips', formData)
+        if (response.status === 200) alert('Trip Created Successfully'); //--> i want this to disappear
+        
+    }
+        catch(error){ 
+            alert('error creating trip');
+    
+         }
+        };
 
         //  function handleSubmit(event) {
         //     event.preventDefault();
