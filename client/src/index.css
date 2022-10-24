@@ -2,7 +2,8 @@
   margin: 0;
   padding:0;
   box-sizing:border-box;
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Comic Sans MS', cursive ;
+  color:rgba(72, 122, 222, 0.859)
 }
 main{
   padding: 32px;
@@ -11,4 +12,7 @@ main{
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  background-color: rgba(230, 248, 248, 0.859);
+
+
 }

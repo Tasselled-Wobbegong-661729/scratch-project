@@ -1,17 +1,27 @@
 
 import Signup from './component/Signup';
+import Login from './component/Login'
+import Button from 'react-bootstrap/Button'
+
+import {useState} from 'react';
 function App() {
+  const [signupButton, setSignupButton] = useState(false)
+
   return (
+
     <div className="App">
       <main>
-        <h1>React App Scratch Project</h1>
+        <h1>Welcome to the travel packing App !</h1>
         <br /><br />
-        <button>Sign Up!</button>
-        <Signup trigger={true} > 
-          <h3>All Fields Are equired !</h3>
+        <Login className="login"></Login>
+        <br />
+        <Button onClick = {() => setSignupButton(true)}>Sign Up!</Button>
+        <Signup trigger={signupButton} setTrigger={setSignupButton}> 
         </Signup> 
       </main>
     </div>
+
+
   );
 }
 
