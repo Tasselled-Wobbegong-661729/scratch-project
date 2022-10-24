@@ -45,6 +45,10 @@ tripController.getTrip = async (req, res, next) => {
   }
 };
 
+tripController.isLoggedIn = async (req, res, next) => {
+  const { username } = req.user;
+};
+
 // update incomplete
 
 // tripController.updateTrip = async (req, res, next) => {

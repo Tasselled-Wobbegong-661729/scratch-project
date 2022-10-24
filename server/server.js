@@ -3,8 +3,10 @@ const dotenv = require('dotenv').config();
 const colors = require('colors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const connectDB = require('./config/db');
 
 const tripRouter = require('./routes/tripRouter');
+const userRouter = require('./routes/userRouter');
 
 const port = 3000;
 
@@ -27,5 +29,20 @@ app.get('/', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
+app.use('/api/trips', tripRouter);
+app.use('/api/users', userRouter);
+
+app.use((req, res) => res.status(404));
+
+app.use((err, req, res, next) => {
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 400,
+    message: { err: 'An error has occurred' },
+  };
+  const errorObj = { ...defaultErr, ...err };
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
+});
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Server up and listening on port ${port}`));

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+const { Schema } = mongoose;
+
+const userSchema = new Schema({
   email: {
     type: String,
     unique: true,
@@ -12,18 +14,6 @@ const userSchema = mongoose.Schema({
   },
 });
 
-// userSchema.pre('save', function (next) {
-//   if (!this.isModified('password')) {
-//     return next();
-//   }
-//   this.password = bcrypt.hashSync(this.password, 10);
-//   next();
-// });
+const User = mongoose.model('User', userSchema);
 
-// userSchema.methods.comparePassword = function (plaintext, callback) {
-//   return callback(null, bcrypt.compareSync(plaintext, this.password));
-// };
-
-const userModel = mongoose.model('user', userSchema);
-
-module.exports = userModel;
+module.exports = User;
