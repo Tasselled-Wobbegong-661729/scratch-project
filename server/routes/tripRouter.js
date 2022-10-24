@@ -10,9 +10,13 @@ tripRouter.post('/', tripController.createTrip, (req, res) =>
   res.status(201).json('trip added')
 );
 
-tripRouter.get('/:name', tripController.getTrip, (req, res) =>
-  res.status(200).json(res.locals.trip)
-);
+tripRouter.post('/', tripController.createTrip, (req, res) => {
+  return res.status(201).json('trip added');
+});
+
+tripRouter.get('/', tripController.getTrip, (req, res) => {
+  return res.status(200).json(res.locals.trip);
+});
 
 // tripRouter.post('/', tripController.createTrip, (req, res) => {
 //   return res.status(201).json('student added');

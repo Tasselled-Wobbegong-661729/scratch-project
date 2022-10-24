@@ -28,7 +28,7 @@ module.exports = {
       '/api': 'http://localhost:3000',
     },
     compress: true,
-    port: process.env.PORT,
+    port: 8080,
     static: {
       // match the output path
       directory: path.resolve(__dirname, 'dist'),

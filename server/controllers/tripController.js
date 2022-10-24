@@ -10,11 +10,12 @@ tripController.createTrip = async (req, res, next) => {
   }
   const { name, destination, date } = req.body;
   try {
-    await Trip.create({
+    const added = await Trip.create({
       name,
       destination,
       date,
     });
+    res.locals.add = added;
     return next();
   } catch (error) {
     return next({
