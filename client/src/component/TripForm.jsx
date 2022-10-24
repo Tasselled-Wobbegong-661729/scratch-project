@@ -38,6 +38,99 @@ const TripForm = (props) => {
         <div className='newTrip'>
             <h2>Plan your Trip</h2>
         <div className='newTripForm'></div>
+        <form id='tripForm'>
+            
+                <label>Name:
+                <input
+                type='text'
+                name='name'
+                placeholder='Name your Trip'
+                value={name}
+                onChange={e => {setName(e.target.value)}} 
+                />
+                </label>
+            
+            <br />
+          
+                <label>Destination:
+                <input
+                type='text'
+                name='destination'
+                placeholder='Where are you headed?'
+                value={destination}
+                onChange={e => {setDestination(e.target.value)}} 
+                />
+                </label>
+             
+            <br />
+            
+                <label>Date:
+                <input
+                type='text'
+                name='date'
+                placeholder='When are you traveling?'
+                value={date}
+                onChange={e => {setDate(e.target.value)}} 
+                />
+                </label>
+            <Button text='cancel' onClick={handleCancel}/>
+            <Button text='save' onClick={handleSave}/> 
+        </form>
+        </div>
+    );
+};
+//this will be the popup form to fill in about location/date/of trip
+//will have a button to save trip. that will add the trip to trip container and close the trip form
+
+module.exports = TripForm;
+
+<div className='newTrip'>
+            <h2>Plan your Trip</h2>
+        <div className='newTripForm'></div>
+        <form id='tripForm'>
+            
+                <label>Name:
+                <input
+                type='text'
+                name='name'
+                placeholder='Name your Trip'
+                value={name}
+                onChange={e => {setName(e.target.value)}} 
+                />
+                </label>
+            
+            <br />
+          
+                <label>Destination:
+                <input
+                type='text'
+                name='destination'
+                placeholder='Where are you headed?'
+                value={destination}
+                onChange={e => {setDestination(e.target.value)}} 
+                />
+                </label>
+             
+            <br />
+            
+                <label>Date:
+                <input
+                type='text'
+                name='date'
+                placeholder='When are you traveling?'
+                value={date}
+                onChange={e => {setDate(e.target.value)}} 
+                />
+                </label>
+            <Button text='cancel' onClick={handleCancel}/>
+            <Button text='save' onClick={handleSave}/> 
+        </form>
+        </div>
+
+
+{/* <div className='newTrip'>
+            <h2>Plan your Trip</h2>
+        <div className='newTripForm'></div>
         <Form id='tripForm' onSubmit={handleSave}>
             <Form.Group className='name'>
                 <Form.Label>Name:</Form.Label>
@@ -74,10 +167,4 @@ const TripForm = (props) => {
             <Button text='cancel' onClick={handleCancel}/>
             <Button text='save' onClick={handleSave}/> 
         </Form>
-        </div>
-    );
-};
-//this will be the popup form to fill in about location/date/of trip
-//will have a button to save trip. that will add the trip to trip container and close the trip form
-
-module.exports = TripForm;
+        </div> */}
