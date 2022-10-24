@@ -5,7 +5,16 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/server.js",
+    "start": "NODE_ENV=production node server/server.js",
+    "server": "nodemon server/server.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "concurrently \"NODE_ENV=development webpack serve --open --hot\" \"nodemon ./server/server.js\""
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "dist",
+      "client"
+    ]
   },
   "repository": {
     "type": "git",
@@ -21,10 +30,20 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@mui/base": "^5.0.0-alpha.102",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.10",
     "@mui/styled-engine-sc": "^5.10.6",
+    "colors": "^1.4.0",
+    "bcrypt": "^5.1.0",
+    "config": "^3.3.8",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "joi": "^17.6.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.7",
     "pg": "^8.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -40,10 +59,16 @@
     "concurrently": "^6.0.2",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "html-webpack-plugin": "^5.5.0",
     "isomorphic-fetch": "^3.0.0",
     "mini-css-extract-plugin": "^2.6.1",
-    "nodemon": "^2.0.7",
+    "nodemon": "^2.0.20",
     "sass": "^1.55.0",
     "sass-loader": "^13.1.0",
     "style-loader": "^3.3.1",
