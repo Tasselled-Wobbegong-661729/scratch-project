@@ -5,10 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: [
-    // entry point of our app
-    './client/index.js',
-  ],
+  entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
@@ -17,15 +14,17 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Development',
-      template: 'client/index.html',
+      template: 'index.html',
     }),
     new MiniCssExtractPlugin(),
   ],
   devServer: {
-    historyApiFallback: true,
     hot: true,
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/api/**': {
+        target: 'http://localhost:3000',
+        secure: false,
+      },
     },
     compress: true,
     port: 8080,
@@ -49,15 +48,18 @@ module.exports = {
         },
       },
       {
-        test: /.(css|scss)$/,
+        test: /.(css|s(a|c)ss)$/,
         exclude: /node_modules/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-          },
-        ],
+        use: [MiniCssExtractPlugin.loader, 'style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader'
+          }
+        ]
+      }
     ],
   },
   resolve: {

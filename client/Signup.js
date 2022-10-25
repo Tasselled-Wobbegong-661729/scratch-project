@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from './components/Button'
+import Button from './components/Button';
 
 
 function Signup(props) {
@@ -18,12 +18,12 @@ function Signup(props) {
   }
 
   return (props.trigger) ? (
+
+  
     <div className="signup">
       <div className="signup-inner">
       <br />
         <form>
-        
-
           <div className="form-group text-left">
             <label />
             <input name = 'email' placeholder="Enter email" value={email} onChange={e => {setEmail(e.target.value)}}/>

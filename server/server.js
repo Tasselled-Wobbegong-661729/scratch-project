@@ -1,19 +1,19 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
-const colors = require('colors');
+// const colors = require('colors');
 const path = require('path');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db');
-
 const tripRouter = require('./routes/tripRouter');
 const userRouter = require('./routes/userRouter');
-
+const cors = require('cors');
 const port = 3000;
 
 const app = express();
 
 connectDB();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // // request headers for external api access
@@ -25,8 +25,15 @@ app.use(express.urlencoded({ extended: true }));
 // });
 
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
+
+// app.get('/', (req, res) => {
+//   res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+// });
+
+//testing backend
 app.get('/', (req, res) => {
-  res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+  console.log('you are in the server')
+  res.status(200).send('hello! you are connected :)');
 });
 
 app.use('/api/trips', tripRouter);
