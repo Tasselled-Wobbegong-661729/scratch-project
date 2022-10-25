@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const MONGO_URI =
-  'mongodb+srv://dennis:park@scratch.lkftk6o.mongodb.net/apps?retryWrites=true&w=majority';
+  'mongodb+srv://carryON-team:codesmith@carryon.y4kw448.mongodb.net/?retryWrites=true&w=majority';
 
 const connectDB = async () => {
   try {
