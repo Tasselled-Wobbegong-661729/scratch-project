@@ -78,12 +78,12 @@ userController.getUser = async (req, res, next) => {
   }
 };
 
-server.post('/saveList', {
-  username: username,
-  packingList: [{content: 'underwear',
-                  quanity: 1,
-                  packed: false}]
-})
+// server.post('/saveList', {
+//   username: username,
+//   packingList: [{content: 'underwear',
+//                   quanity: 1,
+//                   packed: false}]
+// })
 
 userController.saveList = async(req, res, next) => {
   // if (res.locals.user){

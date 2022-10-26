@@ -6,6 +6,7 @@ const path = require('path');
 const connectDB = require('./config/db');
 //const tripRouter = require('./routes/tripRouter');
 const userRouter = require('./routes/userRouter');
+const userController = require('./controllers/userController');
 const cors = require('cors');
 const port = 3000;
 
@@ -35,6 +36,7 @@ app.get('/', (req, res) => {
   console.log('you are in the server')
   res.status(200).send('hello! you are connected :)');
 });
+
 app.post('/saveList', userController.getUser, userController.saveList, (req, res) => {
   console.log('server hit')
   console.log(res.locals.user)
