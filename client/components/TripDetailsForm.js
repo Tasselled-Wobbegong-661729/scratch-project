@@ -49,7 +49,7 @@ const TripDetailsForm = ({name, setName, destination, setDestination, depDate, s
 		// 		alert('Please fill out all fields~');
 	// 	}
 		e.preventDefault();
-		const formData = {name: name, destination: destination, startDate: startDate, endDate: endDate};
+		const formData = {tripName: name, destination: destination, startDate: depDate, endDate: returnDate};
 		console.log('form data', formData);
 		server
 		.post('/api/trips', formData)
