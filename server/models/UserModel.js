@@ -3,25 +3,11 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-
-
-const tripSchema = new Schema({
-  name: { type: String, required: true },
-  destination: { type: String, required: true },
-  date: { type: String, required: true },
-  // packingList : [ reference ]
-});
-
-
-// const tripsListSchema = new Schema({
-//   listOfTrips: ,
-// });
-
 const userSchema = new Schema({
   email: {
     type: String,
     unique: true,
-    required: false,
+    required: true,
   },
   username: {
     type: String,
@@ -30,21 +16,10 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: false,
+    required: true,
   },
-  // trips: [[tripSchema]] //[{type: Schema.Types.ObjectId, ref: 'Trip'}]
-  //trips: [{type: Schema.Types.ObjectId, required: true, ref: 'tripsListSchema'}]
-  // trips: { name: String, val: tripSchema.Types._id },
-  // trips: {type: tripsListSchema, required: true}
-  trips: {name: { type: String, required: true },
-    destination: { type: String, required: true },
-    date: { type: String, required: true },
-  }
+  prevPackingLists: [[{ type: Schema.Types.ObjectId, ref: 'packingList' }]],
 });
-
-
-
-
 
 const packingItemSchema = new Schema({
   item: { type: String },
@@ -52,19 +27,17 @@ const packingItemSchema = new Schema({
   packed: { type: Boolean, default: false },
 });
 
+const packingListSchema = new Schema({
+  tripName: {type: String},
+  listOfPackingItems: [packingItemSchema]
+})
+
 // console.log(packingItemSchema);
 
-// const Trip = mongoose.model('Trip', tripSchema);
+const packingList = mongoose.model('packingList', packingListSchema);
 
-// const tripsList = mongoose.model('TripList', tripsListSchema);
+// const tripsList = mongoose.model('TripList', trip);
 
 const User = mongoose.model('User', userSchema);
 
-// [{location: San Diego
-//   date: 10/31/25,
-//   packingList: [{content: 'toiletpaper',
-//                  quantity: 4},
-//                  {content: 'underwear',
-//                   quantity: 5}]}]
-
-module.exports = User;
+module.exports = { User, packingList };
