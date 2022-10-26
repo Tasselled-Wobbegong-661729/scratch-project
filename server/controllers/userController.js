@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 //const dotenv = require('dotenv').config();
 const path = require('path');
 const User = require('../models/UserModel');
-
 const userController = {};
 // const { SECRET = 'secret' } = process.env;
 
@@ -61,11 +60,13 @@ userController.login = async (req, res, next) => {
   }
 };
 
-userController.getUsers = async (req, res, next) => {
+userController.getUser = async (req, res, next) => {
+  console.log('in getUser')
+  const { username } = req.body;
   try {
-    const found = await User.find({});
+    const found = await User.findOne({username: username});
     console.log(found);
-    res.locals.users = found;
+    res.locals.user = found;
     return next();
   } catch (error) {
     return next({
@@ -76,6 +77,21 @@ userController.getUsers = async (req, res, next) => {
     });
   }
 };
+
+server.post('/saveList', {
+  username: username,
+  packingList: [{content: 'underwear',
+                  quanity: 1,
+                  packed: false}]
+})
+
+userController.saveList = async(req, res, next) => {
+  // if (res.locals.user){
+  //   res.locals.user.trips.list.save()
+  // }
+  next();
+}
+
 
 userController.isLoggedIn = async (req, res, next) => {
   try {
@@ -95,6 +111,7 @@ userController.isLoggedIn = async (req, res, next) => {
         );
         if (payload) {
           // store user data in request object
+          console.log('user Verified Logged In')
           req.user = payload;
           next();
         } else {
