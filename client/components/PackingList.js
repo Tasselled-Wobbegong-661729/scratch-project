@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import TripForm from '../components/TripForm';
-import Trip from '../components/Trip';
+import Trip from './Trip';
 import axios from 'axios';
 
 
-const TripContainer = () => {
+const PackingList = () => {
 
     const [showForm, setShowForm] = useState(false);
 
@@ -40,4 +39,4 @@ const TripContainer = () => {
 };
 
 //module.exports = TripContainer;
-export default TripContainer;
+export default PackingList;
