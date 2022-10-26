@@ -32,9 +32,7 @@ function App (){
 <div className="App">
       <main>
         <h1>Welcome to the travel packing App !</h1>
-        <br /><br />
         {/* <Login className="login"></Login> */}
-        <br />
         <button onClick={handleClick}>Testing Backend</button>
         <button onClick = {() => setSignupButton(true)}>Sign Up!</button>
         {/* <Signup trigger={signupButton} setTrigger={setSignupButton}>  */}
