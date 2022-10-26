@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Button from './components/Button';
 
 
 function Signup(props) {

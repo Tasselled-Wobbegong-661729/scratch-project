@@ -6,5 +6,4 @@ const root = ReactDOM.createRoot(
     document.getElementById("root")
 );
 
-// console.log("HERE IN FRONTEND")
 root.render (<App/>);

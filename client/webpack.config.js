@@ -48,9 +48,8 @@ module.exports = {
         },
       },
       {
-        test: /.(css|s(a|c)ss)$/,
-        exclude: /node_modules/,
-        use: [MiniCssExtractPlugin.loader, 'style-loader', 'css-loader', 'sass-loader'],
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,

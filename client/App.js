@@ -5,6 +5,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 import TripContainer from './containers/TripContainer'
 import axios from "axios";
+import './styling/sitewide.scss';
 
 //main container
 //routers 

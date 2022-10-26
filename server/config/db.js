@@ -5,6 +5,7 @@ const MONGO_URI =
   'mongodb+srv://carryON-team:codesmith@carryon.y4kw448.mongodb.net/?retryWrites=true&w=majority';
 
 const connectDB = async () => {
+  console.log('trying to connect to DB')
   try {
     const conn = await mongoose.connect(MONGO_URI, {
       useNewUrlParser: true,
