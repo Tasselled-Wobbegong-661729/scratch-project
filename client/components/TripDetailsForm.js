@@ -1,15 +1,23 @@
 import React from "react";
 import { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import PackingList from './PackingList';
 
 import axios from 'axios';
 
-const TripDetailsForm = (props) => {
+const TripDetailsForm = ({name, setName, destination, setDestination, depDate, setDepDate}) => {
 	const [name, setName] = useState('');
 	const [destination, setDestination] = useState('');
-	const [depDate, setDepDate] = useState('');
-    const [returnDate, setReturnDate] = useState('');
+	const [date, setDate] = useState('');
+	// const [depDate, setDepDate] = useState('');
+  //   const [returnDate, setReturnDate] = useState('');
 
+	const navigate = useNavigate();
+
+	//server for axios
+	const server = axios.create({
+		baseURL: 'http://localhost:3000/',
+	});
 		//this sets the current day as the min, so you can't plan a trip in the past
     let today = new Date();
     let dd = today.getDate();
@@ -24,23 +32,32 @@ const TripDetailsForm = (props) => {
     }    
     today = yyyy + '-' + mm + '-' + dd;
 
-	const handleSave = async e => {
-    e.preventDefault();
-    try {
-    //send post request to endpoint to create new trip with state passed into request 
-    //reset state
-    //render tripcontainer / un-render tripform
-    // const form = document.getElementById('tripForm');
-    // const formData = new FormData(form);
-    const formData = {name: name, destination: destination, depDate: depDate, returnDate: returnDate};
-    console.log('form data', formData);
-    const response = await axios.post('/api/trips', formData)
-    if (response.status === 200) alert('Trip Created Successfully'); //--> i want this to disappear
-		}
-		catch(error){ 
-			alert('Please fill out all fields~');
-
-			}
+	const handleNext = async e => {
+		// e.preventDefault();
+		// try {
+		// //send post request to endpoint to create new trip with state passed into request 
+		// //reset state
+		// //render tripcontainer / un-render tripform
+		// // const form = document.getElementById('tripForm');
+		// // const formData = new FormData(form);
+		// const formData = {name: name, destination: destination, date: date};
+		// console.log('form data', formData);
+		// const response = await axios.post('/api/trips', formData)
+		// if (response.status === 200) alert('Trip Created Successfully'); //--> i want this to disappear
+		// 	}
+		// 	catch(error){ 
+		// 		alert('Please fill out all fields~');
+	// 	}
+		e.preventDefault();
+		const formData = {name: name, destination: destination, startDate: startDate, endDate: endDate};
+		console.log('form data', formData);
+		server
+		.post('/api/trips', formData)
+		.then((res) => console.log(res))
+		.catch((err) => {
+		console.error(err);
+		});
+		navigate('/PackingList');
 	};
 
 	//  function handleSubmit(event) {
@@ -51,11 +68,11 @@ const TripDetailsForm = (props) => {
 	//     console.log('form data', formData)
 	//   }
 
-	const handleCancel = e => {
-		//reset all state
-		//hide trip form trip form
-		showTrip(false);
-	}
+	// const handleCancel = e => {
+	// 	//reset all state
+	// 	//hide trip form trip form
+	// 	showTrip(false);
+	// }
 
 	return (
 		<div className='main-page-layout'>
@@ -68,7 +85,7 @@ const TripDetailsForm = (props) => {
 						name='name'
 						placeholder='Name your Trip'
 						value={name}
-						onChange={e => {setName(e.target.value)}} 
+						onChange={e => {setName(e.target.value)}}      
 					/>
 					<label>Destination:</label>
 					<select
@@ -76,9 +93,9 @@ const TripDetailsForm = (props) => {
 						name='destination'
 						type='text'
 						value={destination}
-						onChange={e => {setDestination(e.target.value)}} 
+						onChange={e => {setDestination(e.target.value)}}   
 					>
-						<option value='' disabled selected hidden>Where are you headed?</option>
+						<option value='' disabled defaultValue hidden>Where are you headed?</option>
 						<option value='SanDiego'>San Diego</option>
 						<option value='LosAngeles'>Los Angeles</option>
 						<option value='Sacramento'>Sacramento</option>
@@ -95,16 +112,16 @@ const TripDetailsForm = (props) => {
 					>
 						<option value=''></option>
 					</select> */}
-					<label>Departure Date:</label>
+					<label>Departure Date:</label>								
 					<input
 						type='date'
 						name='date'
 						placeholder='When are you traveling?'
                         min={today}
-						value={depDate}
-						onChange={e => {setDepDate(e.target.value)}} 
+						value={date}
+						onChange={e => {setDate(e.target.value)}} 
 					/>
-                    <label>Return Date:</label>
+                    {/* <label>Return Date:</label>
 					<input
 						type='date'
 						name='date'
@@ -112,8 +129,8 @@ const TripDetailsForm = (props) => {
                         min={depDate}
 						value={returnDate}
 						onChange={e => {setReturnDate(e.target.value)}} 
-					/>
-					<button text='save' onClick={handleSave}>Next</button>
+					/> */}
+					<button text='next' type='submit' onClick={handleNext}>Next</button>
 				</form>
 			</div>
 		</div>
