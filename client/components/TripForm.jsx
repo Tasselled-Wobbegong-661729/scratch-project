@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Button from './Button';
 import TripContainer from '../containers/TripContainer';
 
 import axios from 'axios';
