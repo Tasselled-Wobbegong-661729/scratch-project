@@ -12,6 +12,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  lists : {
+    type: Object,
+    required: false,
+  }
 });
 
 const User = mongoose.model('User', userSchema);
