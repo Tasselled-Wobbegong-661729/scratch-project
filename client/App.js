@@ -15,7 +15,8 @@ function App (){
   // const [signupButton, setSignupButton] = useState(false)
   const [name, setName] = useState('');
 	const [destination, setDestination] = useState('');
-	const [date, setDate] = useState('');
+	const [depDate, setDepDate] = useState('');
+  const [returnDate, setReturnDate] = useState('');
 
   const server = axios.create({
     baseURL: 'http://localhost:3000/',

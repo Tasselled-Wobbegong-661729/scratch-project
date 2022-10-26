@@ -5,12 +5,12 @@ import PackingList from './PackingList';
 
 import axios from 'axios';
 
-const TripDetailsForm = ({name, setName, destination, setDestination, depDate, setDepDate}) => {
-	const [name, setName] = useState('');
-	const [destination, setDestination] = useState('');
-	const [date, setDate] = useState('');
+const TripDetailsForm = ({name, setName, destination, setDestination, depDate, setDepDate, returnDate, setReturnDate}) => {
+	// const [name, setName] = useState('');
+	// const [destination, setDestination] = useState('');
+	// const [date, setDate] = useState('');
 	// const [depDate, setDepDate] = useState('');
-  //   const [returnDate, setReturnDate] = useState('');
+  // const [returnDate, setReturnDate] = useState('');
 
 	const navigate = useNavigate();
 
