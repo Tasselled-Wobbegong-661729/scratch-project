@@ -28,7 +28,10 @@ const packingItemSchema = new Schema({
 });
 
 const packingListSchema = new Schema({
-  tripName: {type: String},
+  tripName: {type: String, required: false},
+  destination: {type: String, required: false},
+  startDate: {type: Date, required: false},
+  endDate: {type: Date, required: false},
   listOfPackingItems: [packingItemSchema]
 })
 
