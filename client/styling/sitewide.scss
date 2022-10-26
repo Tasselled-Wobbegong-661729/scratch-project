@@ -1,6 +1,7 @@
+$black: #161B27;
 $blue: #227c9d;
 $yellow: #fccb77;
-$white: #fef9ef;
+$white: #faf8f3;
 
 
 body {
@@ -8,6 +9,7 @@ body {
     background-color: $white;
     margin: 0;
     grid-template-rows: 5vh 95vh;
+    color: $black;
 }
 
 #navbar {
