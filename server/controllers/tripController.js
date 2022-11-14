@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const { SelectUnstyledContext } = require('@mui/base');
+// const { SelectUnstyledContext } = require('@mui/base');
 const Trip = require('../models/TripModel');
 
 const tripController = {};
@@ -10,11 +10,12 @@ tripController.createTrip = async (req, res, next) => {
   }
   const { name, destination, date } = req.body;
   try {
-    await Trip.create({
+    const added = await Trip.create({
       name,
       destination,
       date,
     });
+    res.locals.add = added;
     return next();
   } catch (error) {
     return next({
@@ -32,7 +33,7 @@ tripController.getTrip = async (req, res, next) => {
 
     const found = await Trip.find({});
     console.log(found);
-    res.locals.trip = found;
+    res.locals.find = found;
     return next();
   } catch (error) {
     return next({
@@ -44,15 +45,23 @@ tripController.getTrip = async (req, res, next) => {
   }
 };
 
+tripController.isLoggedIn = async (req, res, next) => {
+  const { username } = req.user;
+};
+
 // update incomplete
 
 // tripController.updateTrip = async (req, res, next) => {
+//   const { name, destination, date } = req.params;
+//   const { name, destination, date } = req.body;
+
 //   try {
-//     await Trip.create({
+//     const updated = await Trip.updateOne({
 //       name,
 //       destination,
 //       date,
 //     });
+//     updated = res.locals.update;
 //     return next();
 //   } catch (error) {
 //     return next({
@@ -80,6 +89,6 @@ tripController.deleteTrip = async (req, res, next) => {
   }
 };
 
-// for single property delete/add/update - call findoneand- on the property and 
+// for single property delete/add/update - call findoneand- on the property and
 
 module.exports = tripController;

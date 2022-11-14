@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
-import TripForm from '../components/TripForm';
-import Trip from '../components/Trip';
-import axios from 'axios';
+import Button from './component/TripBtn';
+import TripForm from '../component/TripForm';
+import Trip from '../component/Trip';
+import { PropaneSharp } from '@mui/icons-material';
+require('bootstrap');
+const axios = require('axios');
 
 
 const TripContainer = () => {
@@ -30,7 +33,8 @@ const TripContainer = () => {
             <Button id='tripBtn' onClick={showTrip} text='Show/Hide Trip Form'/>
             </div>
             <div>
-                {trips} 
+                {...trips}
+                {props.children} 
             </div>
            
         </div>  
@@ -39,5 +43,4 @@ const TripContainer = () => {
     );
 };
 
-//module.exports = TripContainer;
-export default TripContainer;
+module.exports = TripContainer;

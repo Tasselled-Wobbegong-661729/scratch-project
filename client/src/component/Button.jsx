@@ -7,5 +7,4 @@ const Button = (props) => {
     );
 };
 
-//module.exports = Button;
-export default Button;
+module.exports = Button;
